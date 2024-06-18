@@ -1,3 +1,4 @@
+<!-- Podstawa do pozostałych stron -->
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -5,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Panda 5</title>
+  <link rel="icon" type="image/x-icon" href="/static/images/panda.jpg">
     <meta name="description" content="Your perfect workout website :D">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/static/css/style_base.css" rel="stylesheet" type="text/css"/>
@@ -13,16 +15,21 @@
 <body>
   <header>
    <h1>
+     <!-- Przejście do strony głównej poprzez obrazek -->
       <a href="{% url 'home' %}">
         <img src="/static/images/panda.jpg" alt="logo" class="logo">
       </a>
+     <!-- Nawigacja -->
       <nav>
+        <!-- Linki do sekcji głównych -->
         <span class="header-left"><a href="{% url 'workouts' %}">WORKOUTS</a></span>
         <span class="header-left"><a href="{% url 'challenges' %}">CHALLENGES</a></span>
         <span class="header-left"><a href="{% url 'hall_of_fame' %}">HALL OF FAME</a></span>
+        <!-- Linki dla zalogowanych użytkowników -->
         {% if user.is_authenticated %}
           <span class="header-left"><a href="{% url 'personal_records' %}">MY PERSONAL RECORDS</a></span>
         {% endif %}
+        <!-- Dropdown użytkownika -->
         <div class="dropdown">
             <img src="/static/images/user.png" alt="user" class="logo">
             <div class="dropdown-content">
@@ -41,6 +48,7 @@
   </header>
 
  <main>
+   <!-- Wyświetlanie komunikatów -->
     {% if messages %}
       <div class="messages">
         {% for message in messages %}
@@ -53,6 +61,7 @@
     {% endblock %}
 </main>
 
+  <!-- Stopka strony -->
   <div class="footer">
     <span><a href="{% url 'about_us' %}">ABOUT US </a> </span>
     <span><a href="{% url 'contact' %}">CONTACT </a> </span>

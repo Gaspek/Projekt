@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-
+<!--Strona, która w dogłębniejszy sposób opisuje konkretne ćwiczenia danego treningu -->
 {% block content %}
 
     <h2>Workout "{{ workout.name }}"</h2>
 
+        <!-- Iteracja przez obiekty WorkoutExercise  -->
         {% for w_e in w_e %}
+            <!-- Jeśli nazwa treningu odpowiada aktualnemu to wyświetla -->
             {% if w_e.workout.name ==  workout.name %}
                 <h3>{{ w_e.exercise.name }}</h3>
                 <ul>

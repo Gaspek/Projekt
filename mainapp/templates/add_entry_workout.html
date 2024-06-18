@@ -1,23 +1,28 @@
+<!-- Strona dodająca wpis o wykonaniu ćwiczenia -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Add workout entry for "{{ workout.name }}"</h2>
-    
 
-            {% for workout_exercise in workout_exercises %}
+    <!-- Iteracja po każdym obiekcie modelu WorkoutExercise - ćwiczenie -->
+    {% for workout_exercise in workout_exercises %}
         <h3>{{ workout_exercise.exercise.name }}</h3>
+        <!-- Formularz dodania wpisu -->
         <form method="post" class="exercise-form">
             {% csrf_token %}
             {{ add_entry_form.as_p }}
             <input type="hidden" name="exercise_id" value="{{ workout_exercise.exercise.id }}">
+            <!-- Przycisk wysłania formularza -->
             <button type="submit" value="submit">Submit</button>
         </form>
         <br>
     {% endfor %}
 
+     <!-- Skrypt JavaScript obsługujący wysyłanie formularzy -->
     <script type="text/javascript">
         document.querySelectorAll('.exercise-form').forEach(form => {
             form.addEventListener('submit', function(event) {
+                // Zapobieganie domyślnemu wysłaniu formularza
                 event.preventDefault();
                 fetch(this.action, {
                     method: 'POST',
@@ -27,9 +32,11 @@
                     }
                 }).then(response => {
                     if (response.ok) {
+                        // Komunikat o poprawnym odesłaniu
                         alert('Correctly submitted exercise log');
                     }
                 }).catch(error => {
+                    // Obsługa błędów
                     console.error('Error:', error);
                 });
             });

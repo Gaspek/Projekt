@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from . import views
 from .views import UserProfileCreateView, UserProfileUpdateView
 
+# ścieżki URL
 urlpatterns = [
     path("", views.home, name="home"),
     path("workouts/pdf/", views.save_workouts_to_pdf, name="save_workouts_to_pdf"),  # Ensure this is before the workout detail pattern
@@ -23,5 +24,5 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("profile/edit_extra/", UserProfileUpdateView.as_view(), name="profile_edit"),
     path('personal_records/', views.personal_records, name='personal_records'),
-    path('update_record/<int:exercise_id>/', views.update_record, name='update_record'),
+    path('update_record/<int:exercise_id>/', views.update_record, name='update_record')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

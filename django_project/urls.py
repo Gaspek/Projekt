@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import include
 
+#Ścieżki
 urlpatterns = [
-    path("mainapp/", include("mainapp.urls")),
-    path('grappelli/', include('grappelli.urls')),  # grappelli URLS
+    #moduł administracyjny Grappelli
+    path('grappelli/', include('grappelli.urls')),
+    #moduł administracyjny
     path('admin/', admin.site.urls),
+    #Główna ścieżka aplikacji
     path("", include("mainapp.urls")),
 ]

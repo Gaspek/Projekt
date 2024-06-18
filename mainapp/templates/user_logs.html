@@ -1,9 +1,10 @@
-
+<!-- Strona pokazująca nasze zapisy ćwiczeń jakie wykonywaliśmy -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Your exercises</h2>
     <ul>
+        <!-- Wyświetlanie zapisów ćwiczeń -->
     {% for exercise_log in exercise_logs %}
             <h3>{{ exercise_log.workout_exercise.workout.name }}</h3>
 

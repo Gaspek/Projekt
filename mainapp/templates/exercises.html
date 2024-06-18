@@ -1,18 +1,16 @@
+<!-- Informacje dotyczące ćwiczenia -->
 {% extends "base.html" %}
 
 {% block content %}
 
     <h2>Exercise list</h2>
-
+<!-- Iteracja poprzez wszystkie możliwe ćwiczenia i wyświetlenie ich opisu -->
 {% for exercise in exercises %}
     <strong style="margin-left: 10px;">{{ exercise.name }}</strong>
     <ul>
-    <li>Muscles engaged: {{ exercise.muscles }}</li>
-    <li>Instruction: {{ exercise.instructions }}</li>
-    <li>Difficulty: {{ exercise.difficulty }}</li>
-    <!-- zle sciezka
-        <li><img src="{{ exercise.image.url }}" alt="{{ exercise.name }}"></li> -->
- 
+        <li>Muscles engaged: {{ exercise.muscles }}</li>
+        <li>Instruction: {{ exercise.instructions }}</li>
+        <li>Difficulty: {{ exercise.difficulty }}</li> 
     </ul>
 {% endfor %}
 

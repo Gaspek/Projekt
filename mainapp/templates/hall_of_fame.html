@@ -1,8 +1,10 @@
+<!-- Strona wyświetlająca największe wyniki dla każdego ćwiczenia -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Hall of Fame</h2>
     <ul>
+        <!-- Iteracja przez każdy wynik i wyświetlenie opisu -->
         {% for record in hall_of_fame_records %}
             <li>
                 <strong>{{ record.exercise.name }}</strong>: {{ record.highscore }} by {{ record.user.username }} on {{ record.date_got|date:"Y-m-d" }}
@@ -10,19 +12,23 @@
         {% endfor %}
     </ul>
 
+    <!-- Wykres -->
     <canvas id="hallOfFameChart" style="max-width: 400px; max-height: 300px;"></canvas>
-    
+
+    <!-- Kod JavaScript do wygenerowania wykresu słupkowego, pokazuje rekord w zależności od ćwiczenia -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var ctx = document.getElementById('hallOfFameChart').getContext('2d');
             var exerciseNames = [];
             var highscores = [];
-    
+            
+             // Pobranie danych z rekordów do wygenerowania wykresu
             {% for record in hall_of_fame_records %}
                 exerciseNames.push("{{ record.exercise.name }}");
                 highscores.push("{{ record.highscore }}");
             {% endfor %}
-    
+
+            // Utworzenie wykresu za pomocą biblioteki Chart.js
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {

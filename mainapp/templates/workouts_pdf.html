@@ -1,7 +1,9 @@
+<!-- Generowanie listy treningów jako pdf -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Workouts PDF</title>
+    <!-- Stylizacja strony -->
     <style>
         body { font-family: Arial, sans-serif; }
         .workout { margin-bottom: 20px; }
@@ -10,14 +12,13 @@
 </head>
 <body>
     <h1>Workout List</h1>
+    <!-- Pętla iterująca po treningach -->
     {% for workout in workouts %}
         <div class="workout">
             <h2>{{ workout.name }}</h2>
             <p>{{ workout.description }}</p>
-            {% if workout.image %}
-                <img src="{{ workout.image.url }}" alt="{{ workout.name }}">
-            {% endif %}
         </div>
     {% endfor %}
 </body>
 </html>
+
