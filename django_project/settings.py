@@ -31,7 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    '127.0.0.1',
+    'panda5.azurewebsites.net',
     '05d9c5d7-6f3b-4318-a968-b0a1ac68a1ee-00-2qt7426m2gmfe.janeway.replit.dev'
+    # Add any other hosts you want to allow
 ]
 CSRF_TRUSTED_ORIGINS = ["https://*.replit.dev", "https://*.replit.app"]
 
