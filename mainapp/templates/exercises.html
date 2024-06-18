@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Exercise list</h2>
+
+{% for exercise in exercises %}
+    <strong style="margin-left: 10px;">{{ exercise.name }}</strong>
+    <ul>
+    <li>Muscles engaged: {{ exercise.muscles }}</li>
+    <li>Instruction: {{ exercise.instructions }}</li>
+    <li>Difficulty: {{ exercise.difficulty }}</li>
+    <!-- zle sciezka
+        <li><img src="{{ exercise.image.url }}" alt="{{ exercise.name }}"></li> -->
+ 
+    </ul>
+{% endfor %}
+
+{% endblock %}

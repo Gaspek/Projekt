@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Participate in "{{ challenge.name }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if user_progress %}
+        <h3>Your Progress</h3>
+        <p>Progress Value: {{ user_progress.progress_value }}</p>
+        <p>Goal: {{ goal }}</p>
+
+        <div style="width: 50%; margin: auto;">
+            <canvas id="myPieChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var progressValue = {{ user_progress.progress_value }};
+                var goal = {{ goal }};
+            
+                var remainingValue = goal - progressValue;
+            
+                var data = {
+                    labels: ['Progress', 'Remaining'],
+                    datasets: [{
+                        data: [progressValue, remainingValue],
+                        backgroundColor: ['#36A2EB', '#FF6384']
+                    }]
+                };
+            
+                var ctx = document.getElementById('myPieChart').getContext('2d');
+            
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Progress Pie Chart'
+                        }
+                    }
+                });
+            });
+        </script>
+    {% else %}
+        <p>You have not made any progress yet.</p>
+    {% endif %}
+{% endblock %}

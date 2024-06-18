@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Hall of Fame</h2>
+    <ul>
+        {% for record in hall_of_fame_records %}
+            <li>
+                <strong>{{ record.exercise.name }}</strong>: {{ record.highscore }} by {{ record.user.username }} on {{ record.date_got|date:"Y-m-d" }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <canvas id="hallOfFameChart" style="max-width: 400px; max-height: 300px;"></canvas>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('hallOfFameChart').getContext('2d');
+            var exerciseNames = [];
+            var highscores = [];
+    
+            {% for record in hall_of_fame_records %}
+                exerciseNames.push("{{ record.exercise.name }}");
+                highscores.push("{{ record.highscore }}");
+            {% endfor %}
+    
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: exerciseNames,
+                    datasets: [{
+                        label: 'Highscore',
+                        data: highscores,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    
+{% endblock %}

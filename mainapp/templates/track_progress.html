@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Track Progress for Challenge: {{ challenge.name }}</h2>
+
+<ul>
+    <h3>Goals</h3>
+    {% for goal in goals %}
+        <li>{{ goal.exercise.name }}: {{ goal.goal }}</li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="entry_button">Update Progress</button>
+    </form>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Workout list</h2>
+
+    {% for workout in workouts %}
+        <div style="margin-bottom: 20px;">
+            <strong style="margin-left: 10px;">{{ workout.name }}</strong>
+            <ul>
+                <li>{{ workout.description }}</li>
+                <br>
+                {% if workout.image %}
+                    <img src="{{ workout.image.url }}" alt="{{ workout.name }}" width="200" height="200" style="margin-left: 10px;">
+                {% endif %}
+                <br>
+                <a href="{% url 'w_e' workout.name %}"><button class="button-join">See more...</button></a>
+                <br>
+                {% if user.is_authenticated %}
+                    <br>
+                    <a href="{% url 'add_entry_workout' workout.name %}" target="popup" onclick="window.open('{% url 'add_entry_workout' workout.name %}', 'name', 'width=1090,height=800'); return false;">
+                        <button class="entry_button">Add entry</button>
+                    </a>
+                {% endif %}
+            </ul>
+        </div>
+    {% endfor %}
+    <a href="{% url 'save_workouts_to_pdf' %}"><button>Download Workouts as PDF</button></a>
+{% endblock %}

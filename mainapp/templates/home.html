@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Panda 5</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/panda.jpg">
+    <meta name="description" content="Your perfect workout website :D">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="{% url 'home' %}">
+        <img src="/static/images/panda.jpg" alt="logo" class="logo">
+      </a>
+      <nav>
+        <span class="header-left"><a href="{% url 'workouts' %}">WORKOUTS</a></span>
+        <span class="header-left"><a href="{% url 'challenges' %}">CHALLENGES</a></span>
+        <span class="header-left"><a href="{% url 'hall_of_fame' %}">HALL OF FAME</a></span>
+        {% if user.is_authenticated %}
+          <span class="header-left"><a href="{% url 'personal_records' %}">MY PERSONAL RECORDS</a></span>
+        {% endif %}
+          <div class="dropdown">
+            <img src="/static/images/user.png" alt="user" class="logo">
+            <div class="dropdown-content">
+              {% if user.is_authenticated %}
+                  <a href="{% url 'profile' %}">USER PROFILE</a>
+                  <a href="{% url 'user_logs' %}">EXERCISE LOG</a>
+                  <a href="{% url 'logout' %}">LOG OUT</a>
+              {% else %}
+                  <a href="{% url 'login' %}">LOG IN</a>
+                  <a href="{% url 'register' %}">REGISTER</a>
+              {% endif %}
+            </div>
+          </div>
+
+      </nav>
+    </h1>
+  </header>
+
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main>
+    <h2>Welcome to Panda V!!</h2>
+    <div class="container">
+      <p class="p-border">Our website is made specifically for you to enhance and simplify your exercise routine. You can track your progress and have an easier time making your workout more effective. On top of that, we offer many different challenges that make exercising more satisfying!</p>
+      <img src="/static/images/photo1.jpg" alt="workout" class="image">
+    </div>
+      <a href="{% url 'register' %}"><button class="button-join">JOIN NOW!!!</button></a>
+  </main>
+
+
+    <div class="footer">
+    <span><a href="{% url 'about_us' %}">ABOUT US </a> </span>
+    <span><a href="{% url 'contact' %}">CONTACT </a> </span>
+    <span class="social-media">SOCIAL MEDIA</span>
+    <a href ="https://www.facebook.com/"> <img src="/static/images/fb.png" alt="Facebook" style="width: 40px; height: 40px;margin-right: 10px;"> </a>
+    <a href ="https://www.instagram.com/"> <img src="/static/images/insta.png" alt="Instagram" style="width: 40px; height: 40px;margin-right: 10px;"> </a>
+    <a href ="https://twitter.com/home"> <img src="/static/images/tt.png" alt="twitter" style="width: 40px; height: 40px; margin-right: 30px;"> </a>
+
+  </div>
+
+</body>
+</html>

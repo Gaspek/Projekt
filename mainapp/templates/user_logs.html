@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Your exercises</h2>
+    <ul>
+    {% for exercise_log in exercise_logs %}
+            <h3>{{ exercise_log.workout_exercise.workout.name }}</h3>
+
+            <strong style="margin-left: 10px;">{{ exercise_log.date }} - {{ exercise_log.workout_exercise.exercise.name }}</strong>
+            <ul>
+                <li>Duration: {{ exercise_log.duration }} s</li>
+                <li>Weight lifted: {{ exercise_log.weight }} </li>
+                <li>Reps: {{ exercise_log.reps }}</li>
+                <li>Sets: {{ exercise_log.sets }}</li>
+                <li>Distance: {{ exercise_log.distance }} m</li>
+            </ul>
+        <br>
+            {% endfor %}
+    </ul>
+{% endblock %}

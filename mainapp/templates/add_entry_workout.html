@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Add workout entry for "{{ workout.name }}"</h2>
+    
+
+            {% for workout_exercise in workout_exercises %}
+        <h3>{{ workout_exercise.exercise.name }}</h3>
+        <form method="post" class="exercise-form">
+            {% csrf_token %}
+            {{ add_entry_form.as_p }}
+            <input type="hidden" name="exercise_id" value="{{ workout_exercise.exercise.id }}">
+            <button type="submit" value="submit">Submit</button>
+        </form>
+        <br>
+    {% endfor %}
+
+    <script type="text/javascript">
+        document.querySelectorAll('.exercise-form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Correctly submitted exercise log');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+{% endblock %}

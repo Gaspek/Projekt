@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Active Challenge List</h2>
+
+<ul>
+    {% for challenge in challenges %}
+        <li>
+            <strong>{{ challenge.name }}</strong>
+            <br>
+            <p>Start date:{{ challenge.date_start|date:"F j, Y" }}</p>
+            <p>End date:{{ challenge.date_end|date:"F j, Y" }}</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'participate_in_challenge' challenge.id %}" target="popup" onclick="window.open('{% url 'participate_in_challenge' challenge.id %}', 'name', 'width=1090,height=800'); return false;">
+                    <button class="entry_button">Take part in a challenge</button>
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

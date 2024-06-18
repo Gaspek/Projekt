@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Workout "{{ workout.name }}"</h2>
+
+        {% for w_e in w_e %}
+            {% if w_e.workout.name ==  workout.name %}
+                <h3>{{ w_e.exercise.name }}</h3>
+                <ul>
+                    <li><strong>Number of recommended sets:</strong> {{ w_e.sets }}</li>
+                    <li><strong>Number of recommended reps:</strong> {{ w_e.reps }}</li>
+                    <li><strong>Recommended weight:</strong> {{ w_e.weight }}</li>
+                    <li><strong>Recommended exercise duration:</strong> {{ w_e.duration }}</li>
+                    <li><strong>Recommended exercise intensity:</strong> {{ w_e.exercise.difficulty }}</li>
+                    <li><strong>Instructions</strong> {{ w_e.exercise.instructions }}</li>
+                </ul>
+            {% endif%}
+        {% endfor %}
+
+{% endblock %}

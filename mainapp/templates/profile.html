@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>View profile</h2>
+
+    <h3>Basic Information</h3>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+
+        <a href="{% url 'edit_profile' %}"><button class="button-join">Edit basic information</button></a>
+
+    <h3>Extra Information</h3>
+        <p>Height: {{ user_profile.height }} cm</p>
+        <p>Weight: {{ user_profile.weight }} kg</p>
+
+        <a href="{% url 'profile_edit' %}"><button class="button-join">Edit extra information</button></a>
+
+{% endblock %}

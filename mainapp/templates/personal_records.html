@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Your Personal Records</h2>
+    <ul>
+        {% for record in records %}
+            <li>
+                {{ record.exercise.name }}: {{ record.highscore }}
+                <a href="{% url 'update_record' record.exercise.id %}"><button class="button-join">Update</button></a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
