@@ -1,9 +1,11 @@
+<!-- Strona, która prezentuje przykładowe treningi -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Workout list</h2>
 
     {% for workout in workouts %}
+<!-- Wyświetlanie konkretnych treningów, ich nazw oraz opisów wraz ze zdjęciami -->
         <div style="margin-bottom: 20px;">
             <strong style="margin-left: 10px;">{{ workout.name }}</strong>
             <ul>
@@ -13,6 +15,7 @@
                     <img src="{{ workout.image.url }}" alt="{{ workout.name }}" width="200" height="200" style="margin-left: 10px;">
                 {% endif %}
                 <br>
+                <!-- Przycisk pozwalający zalogowanym użytkownikom zobaczyć detale danego treningu -->
                 <a href="{% url 'w_e' workout.name %}"><button class="button-join">See more...</button></a>
                 <br>
                 {% if user.is_authenticated %}
@@ -24,5 +27,6 @@
             </ul>
         </div>
     {% endfor %}
+<!-- Przycisk pozwalający pobrać treningi jako plik pdf -->
     <a href="{% url 'save_workouts_to_pdf' %}"><button>Download Workouts as PDF</button></a>
 {% endblock %}

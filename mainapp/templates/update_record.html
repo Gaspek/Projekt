@@ -1,13 +1,18 @@
+<!-- Strona, w której użytkownik może zaktualizować swoje wyniki -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Update Record for {{ exercise.name }}</h2>
+    <!-- Formularz aktualizacji rekordu -->
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <!-- Wysłanie formularza za pomocą przycisku -->
         <button type="submit">Update Record</button>
     </form>
+    
     <p>Your current record: {{ record.highscore }}</p>
+    <!-- Wyświetlanie komunikatów -->
     {% if messages %}
         <div class="messages">
             {% for message in messages %}

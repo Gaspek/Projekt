@@ -2,18 +2,19 @@
 
 {% block content %}
 
+<!--Wyświetlenie błędu jeśli takowy zaszedł-->
 {% if form.errors %}
-<!-- this shows all the time  -->
 <p>There was an error with your form...</p>
 {% endif %}
 
 <h2>Register</h2>
-
+  <!--Formularz rejestracyjny-->
   <form action="{% url 'register' %}" method = POST>
     {% csrf_token %}
 
     {{form.as_p}}
       <br></br>
+    <!--Przycisk oddania formularza-->
     <input type = "submit" value = "Submit" class = "btn btn-secondary">
   </form>
 

@@ -1,11 +1,15 @@
+<!-- Strona wyświetlająca rekordy osobiste -->
 {% extends "base.html" %}
 
 {% block content %}
     <h2>Your Personal Records</h2>
     <ul>
+        <!-- Iteracja przez każdy istniejący najwyższy wynik -->
         {% for record in records %}
             <li>
+                <!-- Wyświetlenie -->
                 {{ record.exercise.name }}: {{ record.highscore }}
+                <!-- Przycisk aktualizujący najwyższy wynik konkretnego ćwiczenia -->
                 <a href="{% url 'update_record' record.exercise.id %}"><button class="button-join">Update</button></a>
             </li>
         {% endfor %}

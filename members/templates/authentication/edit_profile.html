@@ -2,10 +2,11 @@
 
 {% block content %}
   <h2>Edit profile</h2>
-
+  <!-- Formularz edycji profilu -->
   <form action="" method="POST">
     {% csrf_token %}
       {{ form.as_p }}
+  <!-- Przycisk do aktualizacji profilu -->
   <button> Update profile </button>
   </form>
 {% endblock %}

@@ -1,3 +1,4 @@
+<!-- Wyświetlenie postępu użytkownika i możliwość edycji -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -7,14 +8,17 @@
 <ul>
     <h3>Goals</h3>
     {% for goal in goals %}
+        <!-- Nazwa ćwiczenia i jego cel -->
         <li>{{ goal.exercise.name }}: {{ goal.goal }}</li>
     {% endfor %}
 </ul>
 
+<!-- Formularz aktualizacji postępu -->
 {% if user.is_authenticated %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <!-- Przycisk zatwierdzający formularz -->
         <button type="submit" class="entry_button">Update Progress</button>
     </form>
 {% endif %}

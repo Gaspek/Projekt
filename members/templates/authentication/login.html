@@ -3,13 +3,17 @@
 {% block content %}
   <h2>Log In</h2>
 
+  <!-- Formularz logowania -->
   <form action="" method="POST">
     {% csrf_token %}
+    <!-- Nazwa użytkownika -->
     <label for="exampleInputEmail1" class="form-label">Username</label>
     <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+    <!-- Hasło -->
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" name="password">
     <br></br>
+    <!-- Przycisk oddania formularza -->
     <input type="submit" value="Submit" class="btn btn-secondary">
   </form>
 {% endblock %}
